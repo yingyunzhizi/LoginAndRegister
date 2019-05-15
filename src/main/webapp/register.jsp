@@ -9,27 +9,35 @@
 <title>注册页面</title>
 <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 <script type="text/javascript">
-function sendCheckCode(){
-	$(function(){
+
+	var code = "";
+	function sendCheckCode(){
 		var email = $("#email").val();
 		debugger
-		$.get("userController/sendEmailToCheck?email="+email);
-		return false;
-	});
-}
-function checkRegister(){
-	$(function () {
-        var checkCode = $("#checkCode").val();
-       /* var randomCode = ${sessionScope.randomCode};*/
-        debugger
+        $.get("userController/sendEmailToCheck?email="+email,"",function(data){
+            code = data;
+        },"");
+	}
+
+    $(function () {
+		$("#checkEmail").submit(function () {
+			var checkCode = $("#checkCode").val();
+			if (checkCode != code){
+				$("#msg").html("验证码错误");
+				return false;
+			}
+			return true;
+        })
     })
+
+
 	
-}
+
 </script>
 </head>
 <body>
 	
-	<form action="#" method="post">
+	<form action="#" method="post" id="checkEmail">
 		<table border="1" cellspacing="0">
 			<tr>
 				<td>用户</td>
@@ -49,10 +57,10 @@ function checkRegister(){
 			<tr>
 				<td>请输入验证码</td>
 				<td><input type="text" id="checkCode"></td>
-				<td></td>
+				<td><span id="msg"></span></td>
 			</tr>
 			<tr>
-				<td colspan="3"><input type="button" value="注册" onclick="checkRegister()"/></td>
+				<td colspan="3"><input type="submit" value="注册"/></td>
 			</tr>
 		</table>
 	</form>

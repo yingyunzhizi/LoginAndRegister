@@ -16,7 +16,7 @@ public class SendEmail {
 		Properties properties = new Properties();
 
 		// 设置服务器名称
-		properties.setProperty("mail.host", "smtp.163.com");
+		properties.setProperty("mail.host", "smtp.qq.com");
 
 		// 设置邮件传输协议
 		properties.setProperty("mail.transport.protocol", "smtp");
@@ -34,7 +34,7 @@ public class SendEmail {
 		Transport transport = session.getTransport();
 
 		// 4.使用用户名密码连接上邮箱服务器,此处的密码需要到邮箱开启服务设置
-		transport.connect("smtp.163.com", "yingyunzhizi1@163.com", "xhc520");
+		transport.connect("smtp.qq.com", "2675066859@qq.com", "pjcrosvekitpebgc");
 
 		// 5.创建邮件
 		Message message = createSimpleMail(session, sendAddress, title, content, copysendAddress);
@@ -49,7 +49,7 @@ public class SendEmail {
 		// 创建邮件对象
 		MimeMessage message = new MimeMessage(session);
 		// 指明邮件的发件人
-		message.setFrom(new InternetAddress("yingyunzhizi1@163.com"));
+		message.setFrom(new InternetAddress("2675066859@qq.com"));
 		// 指明邮件的收件人
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendAddress));
 		// 邮件的标题
