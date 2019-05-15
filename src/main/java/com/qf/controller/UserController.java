@@ -21,7 +21,7 @@ public class UserController {
         String randomCode = CheckCodeUtil.getRandomCode();
         req.getSession().setAttribute("randomCode", randomCode);
         try {
-            SendEmail.SendEmailInfoUser(email, "注册的验证码", "注册的验证码是:"+randomCode+"博文你好啊", "");
+            SendEmail.SendEmailInfoUser(email, "注册的验证码", "注册的验证码是:"+randomCode, "");
         } catch (Exception e) {
             e.printStackTrace();
         }
